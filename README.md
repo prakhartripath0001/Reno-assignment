@@ -64,5 +64,4 @@ The application is optimized for deployment on Vercel.
 - Integrate rich-text formatting for notice bodies to support links, bold text, and lists.
 - Add filtering and search functionality on the frontend to easily locate specific notices.
 
-## AI Usage
-AI assistance was utilized during the development of this project for architectural planning, debugging database driver configurations, and accelerating boilerplate code generation. Specifically, AI was used to resolve Prisma 7 configuration constraints with TiDB and to scaffold the React frontend components using Tailwind CSS and react-hook-form. All generated code was reviewed and adapted to fit the specific assignment requirements.
+
