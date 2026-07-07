@@ -8,7 +8,8 @@ const adapter = new PrismaMariaDb({
     user: '4QCAgL5shuMBjzi.root',
     password: process.env.DATABASE_URL!.match(/:([^:@]+)@/)?.[1] || 'JCfQXRGquvl7Wm8U',
     database: 'noticeboard',
-    ssl: { rejectUnauthorized: true }
+    ssl: { rejectUnauthorized: false },
+    connectTimeout: 20000
 });
 
 const prisma = new PrismaClient({ adapter });
