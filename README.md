@@ -1,40 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Notice Board
 
-## Getting Started
+## Project Overview
+Notice Board is a comprehensive full-stack web application designed for creating, managing, and viewing important notices. It features a responsive grid interface, allowing users to categorize notices (General, Event, Exam), set priorities (Normal, Urgent), and optionally upload images via Cloudinary. The backend is powered by Next.js API Routes and a TiDB Serverless database integrated through Prisma ORM.
 
-First, run the development server:
+## Installation
+To install and set up the project locally, follow these steps:
+
+1. Clone the repository and navigate into the project directory:
+   ```bash
+   git clone <your-repo-url>
+   cd notice-board
+   ```
+
+2. Install the required dependencies:
+   ```bash
+   npm install
+   ```
+
+## Environment Variables
+Create a `.env` file in the root of the project and provide the following variables. Do not commit this file to version control.
+
+```env
+# Database configuration
+DATABASE_URL="mysql://<username>:<password>@<tidb-host>:<port>/noticeboard?sslaccept=strict"
+
+# Cloudinary configuration for image uploads
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="<your-cloud-name>"
+NEXT_PUBLIC_CLOUDINARY_PRESET="<your-upload-preset>"
+```
+
+## How to Run
+Once the dependencies are installed and the environment variables are configured, you can start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be accessible at `http://localhost:3000`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Database
+This project uses Prisma ORM version 7 with a MariaDB/MySQL adapter specifically configured for TiDB Serverless. 
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To apply database schema changes or initialize the database:
+```bash
+npx prisma migrate dev --name init
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+To view and interact with your data in a graphical interface:
+```bash
+npx prisma studio
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
+The application is optimized for deployment on Vercel. 
+1. Push your code to a GitHub repository.
+2. Import the project into Vercel.
+3. Add the required Environment Variables in the Vercel dashboard.
+4. Deploy the application. Vercel will automatically run the build command (`next build`).
 
-## Learn More
+## Future Improvements
+- Implement user authentication and role-based access control (RBAC) so that only administrators can create, edit, or delete notices.
+- Add pagination or infinite scrolling for the notices feed to handle large volumes of data.
+- Integrate rich-text formatting for notice bodies to support links, bold text, and lists.
+- Add filtering and search functionality on the frontend to easily locate specific notices.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## AI Usage
+AI assistance was utilized during the development of this project for architectural planning, debugging database driver configurations, and accelerating boilerplate code generation. Specifically, AI was used to resolve Prisma 7 configuration constraints with TiDB and to scaffold the React frontend components using Tailwind CSS and react-hook-form. All generated code was reviewed and adapted to fit the specific assignment requirements.
