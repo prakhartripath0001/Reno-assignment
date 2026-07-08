@@ -47,7 +47,7 @@ async function createNotice(req: NextApiRequest, res: NextApiResponse) {
         return res.status(201).json(notice);
     } catch (error) {
         if (error instanceof z.ZodError) {
-            return res.status(400).json({ error: error.errors });
+            return res.status(400).json({ error: error.issues });
         }
         console.error(error);
         return res.status(500).json({ error: "Failed to create notice" });
